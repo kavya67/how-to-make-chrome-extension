@@ -45,3 +45,32 @@ more on matches - https://developer.chrome.com/extensions/match_patterns
     "browser_action": {
   "default_icon": "icon.png"
 }
+
+5. Message passing
+    https://developer.chrome.com/extensions/messaging
+    the contents of content.js run on web page context not on extension context, it needs a way to communicate with the rest of the extension.
+    communication between extension and their content scripts is done by message passing.
+
+    here, on the browser action , alert a message.
+   
+    //add this in manifest.js
+    "background": {
+  "scripts": ["background.js"]
+    }
+
+     so in background.js
+     // here we are adding an event listener for the browserAction(click on extension) i.e onclick of the extension icon send a message
+     
+     chrome.browserAction.onClicked.addListener(function(tab){
+    console.log("checking ")
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
+  });
+});  
+
+
+in content.js
+
+
+
