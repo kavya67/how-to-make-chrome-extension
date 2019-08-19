@@ -41,4 +41,7 @@ more on content scripts - https://developer.chrome.com/extensions/content_script
 more on matches - https://developer.chrome.com/extensions/match_patterns
 
 4. Browser action
-    
+    used to put extension icon to the browser on the top right corner.
+    "browser_action": {
+  "default_icon": "icon.png"
+}
