@@ -1,0 +1,44 @@
+Chrome extemsion is software program(html, css, JavaScript) for adding additonal feature to chrome through some of the chrome exposed JavaScript APIs.
+An exenstion is nothing but a web page hoisted within chrome and can access additional APIs.
+
+page actions- chrome extension specific to particular webpages. Usually seen in the google chrome address bar.
+broweser actions - not specific to pages and is relevent no matter where your in the browser. UI added to right of the address bar.
+
+Files to be included 
+1. The most important file to include is the manifest.json file 
+    A chrome extesion is defined by manifest.json file. It included the version , how to interept the extension, what files to load and how to interact with users.
+    basic manifest script
+    {
+        "manifest_version": 2,
+        "name": "My first extension",
+        "version" : 0.1        
+    }
+
+    manifest_version tells Chrome what version of the manifest markup you’re working with. For modern extensions, you’ll need to set this to 2.
+    browser action loads the icon into the toolbar. It also allows the extension to respond to user input by displaying a tooltip, popup or badge.
+    permissions limits the extension’s functional region. activeTab is the most common, allowing the extension to access the front-most tab. 
+
+2. To load your extension to chrome
+    1. go to chrome://extensions/ in browser
+    2. enable developer mode
+    3. load upacked and choose the folder , go the new tab you  and reload , you ll be see the extension on the toolbar
+        When you change or add code in your extension, just come back to this page and reload the page. Chrome will reload your extension.
+3. Content Scripts --> JavaScript file that run in context of webpages.
+    // content.js
+    alert("Hello from your Chrome extension!")
+    to inject the script we need to tell the manifest to load the content.js file 
+    include the below code snippet
+    "content_scripts": [
+  {
+    "matches": [
+      "<all_urls>"
+    ],
+    "js": ["content.js"]
+  }
+]
+and reload the extension 
+more on content scripts - https://developer.chrome.com/extensions/content_scripts
+more on matches - https://developer.chrome.com/extensions/match_patterns
+
+4. Browser action
+    
